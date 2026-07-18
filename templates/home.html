@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="terminal-hero">
+    <p class="typewriter-text">print("Cyber.py")</p>
+</div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 mb-4">
+            <a href="{% url 'attacks:list' %}" class="text-decoration-none text-white">
+                <img src="{% static 'images/attacks.png' %}" class="card-img-top" alt="image"
+                    style="height: 200px; object-fit: contain;">
+                <h3 class="card-title text-center mb-1">Attacks</h3>
+                <p class="card-text text-center">A library of cybersecurity attack techniques.</p>
+            </a>
+        </div>
+        <div class="col-md-5 mb-4">
+            <a href="{% url 'tools:list' %}" class="text-decoration-none text-white">
+                <img src="{% static 'images/tools.png' %}" class="card-img-top" alt="image"
+                    style="height: 200px; object-fit: contain;">
+                <h3 class="card-title text-center mb-1">Tools</h3>
+                <p class="card-text text-center">A collection of cybersecurity tools.</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
