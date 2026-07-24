@@ -10,6 +10,8 @@
             <h3 class="text-center mb-3" style="color: #dc3545;">
                 {% if category.name == "Wireless Attacks" %}
                 <i class="bi bi-wifi me-2"></i>
+                {% elif category.name == "Network Attacks" %}
+                <i class="bi bi-router me-2"></i>
                 {% endif %}
                 {{ category.name }}
             </h3>
