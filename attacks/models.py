@@ -1,4 +1,5 @@
 from django.db import models
+from core.models import TimeStamped
 
 
 class AttackCategory(models.Model):
@@ -11,7 +12,7 @@ class AttackCategory(models.Model):
         return self.name
     
 
-class Attack(models.Model):
+class Attack(TimeStamped):
     name = models.CharField(max_length=100)
     description = models.TextField()
     category = models.ForeignKey(AttackCategory, on_delete=models.PROTECT, related_name="attacks")

@@ -1,4 +1,6 @@
 from django.db import models
+from core.models import TimeStamped
+
 
 class ToolCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -10,7 +12,7 @@ class ToolCategory(models.Model):
         return self.name
     
 
-class Tool(models.Model):
+class Tool(TimeStamped):
     name = models.CharField(max_length=100)
     description = models.TextField()
     category = models.ForeignKey(ToolCategory, on_delete=models.PROTECT, related_name="tools")
