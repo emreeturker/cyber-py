@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import TimeStamped
+from common.models import TimeStamped
 
 
 class ToolCategory(models.Model):

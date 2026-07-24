@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'attacks.apps.AttacksConfig',
     'tools.apps.ToolsConfig',
+    'common.apps.CommonConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
