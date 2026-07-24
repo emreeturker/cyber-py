@@ -10,7 +10,7 @@
                 {{ tool.description }}
             </p>
 
-            
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -21,8 +21,8 @@
                 <tbody>
                     {% for command in tool.commands.all %}
                     <tr>
-                        <td>{{ command.description }}</td>
                         <td>{{ command.command }}</td>
+                        <td>{{ command.description }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

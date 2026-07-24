@@ -21,8 +21,8 @@
                 <tbody>
                     {% for command in attack.commands.all %}
                     <tr>
-                        <td>{{ command.description }}</td>
                         <td>{{ command.command }}</td>
+                        <td>{{ command.description }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
