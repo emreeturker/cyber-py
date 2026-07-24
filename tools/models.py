@@ -1,5 +1,6 @@
 from django.db import models
 from common.models import TimeStamped
+from django.urls import reverse
 
 
 class ToolCategory(models.Model):
@@ -20,6 +21,17 @@ class Tool(TimeStamped):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def type_label(self):
+        return "tool"
+    
+    @property
+    def badge_color(self):
+        return "primary"
+
+    def get_absolute_url(self):
+        return reverse('tools:detail', args=[self.slug])
     
 
 class ToolCommand(models.Model):

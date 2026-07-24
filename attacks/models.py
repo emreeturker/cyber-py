@@ -1,5 +1,6 @@
 from django.db import models
 from common.models import TimeStamped
+from django.urls import reverse
 
 
 class AttackCategory(models.Model):
@@ -20,6 +21,17 @@ class Attack(TimeStamped):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def type_label(self):
+        return "attack"
+    
+    @property
+    def badge_color(self):
+        return "danger"
+
+    def get_absolute_url(self):
+        return reverse('attacks:detail', args=[self.slug])
     
 
 class AttackCommand(models.Model):

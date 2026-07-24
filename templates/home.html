@@ -14,7 +14,7 @@
             <a href="{% url 'attacks:list' %}" class="text-decoration-none text-white">
                 <img src="{% static 'images/attacks.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
-                <h3 class="card-title text-center mb-1">Attacks</h3>
+                <h3 class="card-title text-center mb-1" style="color: #dc3545;">Attacks</h3>
                 <p class="card-text text-center">Explore cybersecurity attack techniques.</p>
             </a>
         </div>
@@ -22,10 +22,23 @@
             <a href="{% url 'tools:list' %}" class="text-decoration-none text-white">
                 <img src="{% static 'images/tools.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
-                <h3 class="card-title text-center mb-1">Tools</h3>
+                <h3 class="card-title text-center mb-1" style="color: #0d6efd;">Tools</h3>
                 <p class="card-text text-center">Explore cybersecurity tools.</p>
             </a>
         </div>
+    </div>
+</div>
+
+<div class="container my-5 col-md-4">
+    <h3 class="text-center">Recently Added</h3>
+    <div class="list-group">
+        {% for item in recent_items %}
+        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">
+            <span class="badge me-1 bg-{{ item.badge_color }}">
+                {{ item.type_label|capfirst }}
+            </span> {{ item.name }}
+        </a>
+        {% endfor %}
     </div>
 </div>
 
