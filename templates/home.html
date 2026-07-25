@@ -8,6 +8,51 @@
     <p class="typewriter-text">print("Cyber.py")</p>
 </div>
 
+<div class="warning-banner">
+    <div class="warning-banner-track">
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+        <span class="warning-banner-block">⚠️ FOR EDUCATIONAL PURPOSES ONLY — USE IN LAB ENVIRONMENTS ⚠️</span>
+    </div>
+</div>
+
+<style>
+    .warning-banner {
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: #1a0000;
+        border-top: 1px solid #dc3545;
+        border-bottom: 1px solid #dc3545;
+        padding: 8px 0;
+        width: 100%;
+    }
+
+    .warning-banner-track {
+        display: inline-flex;
+        animation: scroll-left 30s linear infinite;
+    }
+
+    .warning-banner-block {
+        color: #ff4757;
+        font-weight: bold;
+        font-family: monospace;
+        padding-right: 60px;
+        flex-shrink: 0;
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-5 mb-4">
