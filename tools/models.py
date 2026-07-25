@@ -1,6 +1,7 @@
 from django.db import models
-from common.models import TimeStamped
+from common.models import TimeStamped, CommandCategory
 from django.urls import reverse
+
 
 
 class ToolCategory(models.Model):
@@ -38,6 +39,7 @@ class ToolCommand(models.Model):
     description = models.TextField()
     command = models.CharField(max_length=200)
     tool = models.ForeignKey(Tool, on_delete=models.CASCADE, related_name="commands")
+    command_category = models.ForeignKey(CommandCategory, on_delete=models.PROTECT, null=True, blank=True, related_name="tool_commands")
 
     def __str__(self):
         return self.command

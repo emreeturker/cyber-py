@@ -1,3 +1,8 @@
 from django.contrib import admin
+from common.models import CommandCategory
 
-# Register your models here.
+
+
+admin.site.register(CommandCategory)
+
+

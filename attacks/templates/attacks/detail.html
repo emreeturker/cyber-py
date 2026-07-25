@@ -10,7 +10,9 @@
                 {{ attack.description }}
             </p>
 
-
+            {% regroup commands by command_category as category_list %}
+            {% for category in category_list %}
+            <h4>{{ category.grouper }}</h4>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -19,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for command in attack.commands.all %}
+                    {% for command in category.list %}
                     <tr>
                         <td>{{ command.command }}</td>
                         <td>{{ command.description }}</td>
@@ -27,6 +29,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% endfor %}
         </div>
     </div>
 </div>

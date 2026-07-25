@@ -9,7 +9,8 @@ def attack_list(request):
 
 def attack_detail(request, attack_slug):
     attack = get_object_or_404(Attack, slug=attack_slug)
-    return render(request, "attacks/detail.html", {"attack":attack})
+    commands = attack.commands.order_by("command_category__name")
+    return render(request, "attacks/detail.html", {"attack":attack, "commands":commands})
 
 
 
