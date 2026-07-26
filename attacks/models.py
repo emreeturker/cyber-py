@@ -39,6 +39,10 @@ class AttackCommand(models.Model):
     command = models.CharField(max_length=200)
     attack = models.ForeignKey(Attack, on_delete=models.CASCADE, related_name="commands")
     command_category = models.ForeignKey(CommandCategory, on_delete=models.PROTECT, null=True, blank=True, related_name="attack_commands")
+    position = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["position"]
 
     def __str__(self):
         return self.command

@@ -6,29 +6,49 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="text-center mb-5" style="color: #dc3545;">{{ attack.name }}</h1>
-            <p class="text-center mb-5" style="line-height: 1.7; max-width: 650px; margin: 0 auto;">
+            <p class="text-center mb-5" style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
                 {{ attack.description }}
             </p>
 
+            <style>
+                .category-heading {
+                    color: #dc3545;
+                    margin-bottom: 10px;
+                }
+
+                .category-table-wrapper {
+                    border: 1px solid #444;
+                    border-radius: 6px;
+                    overflow: hidden;
+                    margin-bottom: 24px;
+                }
+
+                .category-table-wrapper table {
+                    margin-bottom: 0;
+                }
+            </style>
+
             {% regroup commands by command_category as category_list %}
             {% for category in category_list %}
-            <h4>{{ category.grouper }}</h4>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Command</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for command in category.list %}
-                    <tr>
-                        <td>{{ command.command }}</td>
-                        <td>{{ command.description }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <h4 class="category-heading">{{ category.grouper }}</h4>
+            <div class="category-table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for command in category.list %}
+                        <tr>
+                            <td>{{ command.command }}</td>
+                            <td>{{ command.description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             {% endfor %}
         </div>
     </div>

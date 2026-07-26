@@ -1,13 +1,14 @@
 from django.contrib import admin
 from tools.models import ToolCategory, Tool, ToolCommand
+from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin
 
 
 
-class ToolCommandInline(admin.TabularInline):
+class ToolCommandInline(SortableInlineAdminMixin, admin.TabularInline):
     model = ToolCommand
 
 
-class ToolAdmin(admin.ModelAdmin):
+class ToolAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [ToolCommandInline]
 
 

@@ -1,13 +1,14 @@
 from django.contrib import admin
 from attacks.models import AttackCategory, Attack, AttackCommand
+from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin
 
 
 
-class AttackCommandInline(admin.TabularInline):
+class AttackCommandInline(SortableInlineAdminMixin, admin.TabularInline):
     model = AttackCommand
 
 
-class AttackAdmin(admin.ModelAdmin):
+class AttackAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [AttackCommandInline]
 
 

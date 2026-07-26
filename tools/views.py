@@ -9,7 +9,7 @@ def tool_list(request):
 
 def tool_detail(request, tool_slug):
     tool = get_object_or_404(Tool, slug=tool_slug)
-    commands = tool.commands.order_by("command_category__name")
+    commands = tool.commands.all()
     return render(request, "tools/detail.html", {"tool":tool, "commands":commands})
 
 
