@@ -78,7 +78,7 @@
     <h3 class="text-center">Recently Added</h3>
     <div class="list-group">
         {% for item in recent_items %}
-        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">
+        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action" style="color: #ffffff;">
             <span class="badge me-1 bg-{{ item.badge_color }}">
                 {{ item.type_label|capfirst }}
             </span> {{ item.name }}

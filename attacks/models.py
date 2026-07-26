@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import TimeStamped, CommandCategory
+from common.models import TimeStamped, BaseCommand
 from django.urls import reverse
 
 
@@ -34,15 +34,8 @@ class Attack(TimeStamped):
         return reverse('attacks:detail', args=[self.slug])
     
 
-class AttackCommand(models.Model):
-    description = models.TextField()
-    command = models.CharField(max_length=200)
+class AttackCommand(BaseCommand):
     attack = models.ForeignKey(Attack, on_delete=models.CASCADE, related_name="commands")
-    command_category = models.ForeignKey(CommandCategory, on_delete=models.PROTECT, null=True, blank=True, related_name="attack_commands")
-    position = models.PositiveIntegerField(default=0)
-
-    class Meta:
-        ordering = ["position"]
-
+    
     def __str__(self):
         return self.command
