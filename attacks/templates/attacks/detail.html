@@ -70,6 +70,31 @@
             {% endif %}
             {% endfor %}
             {% endfor %}
+            {% if attack.slug == "mitm-automatic" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">Tool Used</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
+                This attack was carried out using Bettercap — see the full command reference here.
+            </p>
+            <div class="text-center mt-3">
+                <a href="{% url 'tools:detail' 'bettercap' %}" class="btn btn-outline-primary">
+                    View Bettercap Details
+                </a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "mitm-manual" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">Automated Version Available</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
+                This same attack can also be performed faster and more efficiently using Bettercap's automated workflow.
+            </p>
+            <div class="text-center mt-3">
+                <a href="{% url 'attacks:detail' 'mitm-automatic' %}" class="btn btn-outline-danger">
+                    View MITM Automatic
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -18,7 +18,8 @@
             </h3>
             <div class="list-group mb-5 text-center w-50 mx-auto">
                 {% for attack in category.attacks.all %}
-                <a href="{% url 'attacks:detail' attack.slug %}" class="list-group-item list-group-item-action" style="color: #ffffff;">
+                <a href="{% url 'attacks:detail' attack.slug %}" class="list-group-item list-group-item-action"
+                    style="color: #ffffff;">
                     {{ attack.name }}
                 </a>
                 {% endfor %}
