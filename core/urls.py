@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("attacks/", include("attacks.urls")),
     path("tools/", include("tools.urls")),
+    path("linux_commands/", include("linux_commands.urls")),
     path("", views.home, name="home"),   
 ]
 

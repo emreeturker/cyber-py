@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'attacks.apps.AttacksConfig',
     'tools.apps.ToolsConfig',
     'common.apps.CommonConfig',
+    'linux_commands.apps.LinuxCommandsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
