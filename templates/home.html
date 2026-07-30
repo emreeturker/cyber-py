@@ -52,12 +52,22 @@
             transform: translateX(-50%);
         }
     }
+
+    .home-card {
+        display: block;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .home-card:hover {
+        transform: translateY(-10px);
+        opacity: 0.85;
+    }
 </style>
 
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-4 mb-4">
-            <a href="{% url 'attacks:list' %}" class="text-decoration-none text-white">
+            <a href="{% url 'attacks:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/attacks.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
                 <h3 class="card-title text-center mb-1" style="color: #dc3545;">Attacks</h3>
@@ -65,7 +75,7 @@
             </a>
         </div>
         <div class="col-md-4 mb-4">
-            <a href="{% url 'tools:list' %}" class="text-decoration-none text-white">
+            <a href="{% url 'tools:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/tools.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
                 <h3 class="card-title text-center mb-1" style="color: #0d6efd;">Tools</h3>
@@ -73,7 +83,7 @@
             </a>
         </div>
         <div class="col-md-4 mb-4">
-            <a href="{% url 'linux_commands:list' %}" class="text-decoration-none text-white">
+            <a href="{% url 'linux_commands:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/linux_commands.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
                 <h3 class="card-title text-center mb-1" style="color: #ffc107;">Linux Commands</h3>
