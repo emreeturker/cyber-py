@@ -23,7 +23,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Port</th>
+                            <th style="white-space: nowrap;">Port</th>
                             <th>Service</th>
                             <th>Purpose</th>
                             <th>Vulnerability</th>
@@ -33,7 +33,7 @@
                     <tbody>
                         {% for port in category.ports.all %}
                         <tr>
-                            <td>{{ port.number }}</td>
+                            <td style="white-space: nowrap;">{{ port.number }}</td>
                             <td>{{ port.service_name }}</td>
                             <td>{{ port.purpose }}</td>
                             <td>{{ port.vulnerability }}</td>

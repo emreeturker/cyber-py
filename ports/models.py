@@ -16,7 +16,7 @@ class PortCategory(models.Model):
 
 class Port(models.Model):
     category = models.ForeignKey(PortCategory, on_delete=models.CASCADE, related_name="ports")
-    number = models.PositiveIntegerField()
+    number = models.CharField(max_length=20)
     service_name = models.CharField(max_length=100)
     purpose = models.CharField(max_length=300)
     vulnerability = models.TextField()
