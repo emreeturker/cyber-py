@@ -90,9 +90,18 @@
                 style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
                 Below is a real-world exploitation example using Metasploit — see the full attack walkthrough here.
             </p>
+
             <div class="text-center mt-3">
                 <a href="{% url 'attacks:detail' 'ftp-exploitation' %}" class="btn btn-outline-danger">
                     View FTP Exploitation Attack
+                </a>
+
+                <a href="{% url 'attacks:detail' 'samba-exploitation' %}" class="btn btn-outline-danger">
+                    View Samba Exploitation Attack
+                </a>
+
+                 <a href="{% url 'attacks:detail' 'postgresql-exploitation' %}" class="btn btn-outline-danger">
+                    View PostgreSQL Exploitation Attack
                 </a>
             </div>
             {% endif %}
