@@ -27,7 +27,7 @@
                             <th>Service</th>
                             <th>Purpose</th>
                             <th>Vulnerability</th>
-                            <th>Vulnerability Example</th>
+                            <th style="white-space: nowrap;">Vulnerability Example</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +40,8 @@
                             <td>
                                 {% if port.related_attack %}
                                 <a href="{% url 'attacks:detail' port.related_attack.slug %}">View example</a>
+                                {% elif port.related_tool %}
+                                <a href="{% url 'tools:detail' port.related_tool.slug %}">View example</a>
                                 {% else %}
                                 <span style="color: #777;">Not yet added</span>
                                 {% endif %}

@@ -1,5 +1,6 @@
 from django.db import models
 from attacks.models import Attack
+from tools.models import Tool
 
 
 
@@ -20,6 +21,7 @@ class Port(models.Model):
     purpose = models.CharField(max_length=300)
     vulnerability = models.TextField()
     related_attack = models.ForeignKey(Attack, on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
+    related_tool = models.ForeignKey(Tool, on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
 
     class Meta:
         ordering = ["number"]
