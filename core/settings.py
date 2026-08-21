@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'tools.apps.ToolsConfig',
     'common.apps.CommonConfig',
     'linux_commands.apps.LinuxCommandsConfig',
+    'ports.apps.PortsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

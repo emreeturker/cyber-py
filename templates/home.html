@@ -66,7 +66,7 @@
 
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-4">
             <a href="{% url 'attacks:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/attacks.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
@@ -74,7 +74,8 @@
                 <p class="card-text text-center">Explore cybersecurity attack techniques.</p>
             </a>
         </div>
-        <div class="col-md-4 mb-4">
+
+        <div class="col-md-3 mb-4">
             <a href="{% url 'tools:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/tools.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
@@ -82,7 +83,17 @@
                 <p class="card-text text-center">Explore cybersecurity tools.</p>
             </a>
         </div>
-        <div class="col-md-4 mb-4">
+
+        <div class="col-md-3 mb-4">
+            <a href="{% url 'ports:list' %}" class="text-decoration-none text-white home-card">
+                <img src="{% static 'images/ports.png' %}" class="card-img-top" alt="image"
+                    style="height: 200px; object-fit: contain;">
+                <h3 class="card-title text-center mb-1" style="color: #6f42c1;">Ports</h3>
+                <p class="card-text text-center">Explore important ports and their vulnerabilities.</p>
+            </a>
+        </div>
+
+        <div class="col-md-3 mb-4">
             <a href="{% url 'linux_commands:list' %}" class="text-decoration-none text-white home-card">
                 <img src="{% static 'images/linux_commands.png' %}" class="card-img-top" alt="image"
                     style="height: 200px; object-fit: contain;">
@@ -90,6 +101,7 @@
                 <p class="card-text text-center">Linux commands cheat sheet.</p>
             </a>
         </div>
+
     </div>
 </div>
 
