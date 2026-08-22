@@ -91,22 +91,16 @@
                 Below is a real-world exploitation example using Metasploit — see the full attack walkthrough here.
             </p>
 
-            <div class="text-center mt-3">
-                <a href="{% url 'attacks:detail' 'ftp-exploitation' %}" class="btn btn-outline-danger">
-                    View FTP Exploitation
-                </a>
-
-                <a href="{% url 'attacks:detail' 'samba-exploitation' %}" class="btn btn-outline-danger">
-                    View Samba Exploitation
-                </a>
-
-                 <a href="{% url 'attacks:detail' 'postgresql-exploitation' %}" class="btn btn-outline-danger">
-                    View PostgreSQL Exploitation
-                </a>
-
-                <a href="{% url 'attacks:detail' 'ssh-brute-force' %}" class="btn btn-outline-danger">
-                    View SSH Brute-Force
-                </a>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                <a href="{% url 'attacks:detail' 'ftp-exploitation' %}" class="btn btn-outline-danger">View FTP Exploitation</a>
+                    
+                <a href="{% url 'attacks:detail' 'samba-exploitation' %}" class="btn btn-outline-danger">View Samba Exploitation</a>
+                    
+                <a href="{% url 'attacks:detail' 'postgresql-exploitation' %}" class="btn btn-outline-danger">View PostgreSQL Exploitation</a>
+                    
+                <a href="{% url 'attacks:detail' 'ssh-brute-force' %}" class="btn btn-outline-danger">View SSH Brute-Force</a>
+                    
+                <a href="{% url 'attacks:detail' 'vnc-brute-force' %}" class="btn btn-outline-danger">View VNC Brute-Force</a>
             </div>
             {% endif %}
         </div>
