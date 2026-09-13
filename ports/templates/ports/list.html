@@ -3,53 +3,110 @@
 {% block content %}
 
 <style>
-    .category-table-wrapper table {
-        margin-bottom: 0;
+.category-table-wrapper table {
+    margin-bottom: 0;
+}
+.ports-title {
+    color: #ffffff;
+    display: inline-block;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 8px;
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+@media (max-width: 480px) {
+    .ports-title {
+        font-size: 0.95rem;
     }
+}
+@media (min-width: 768px) {
+    .ports-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .ports-table thead {
+        display: none;
+    }
+    .ports-table, .ports-table tbody, .ports-table tr, .ports-table td {
+        display: block;
+        width: 100%;
+    }
+    .ports-table tr {
+        margin-bottom: 0;
+        border-bottom: 1px solid #444;
+    }
+    .ports-table tr:last-child {
+        border-bottom: none;
+    }
+    .ports-table td {
+        padding: 10px 14px;
+        border: none;
+    }
+    .ports-table td:first-child {
+        font-weight: bold;
+        background-color: rgba(255,255,255,0.05);
+    }
+    .ports-table td:before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.75rem;
+        color: #999;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        font-weight: normal;
+    }
+}
 </style>
 
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h3 class="text-center" style="color: #ffffff;">Important ports and their known vulnerabilities.</h3>
-            <hr style="width: 580px; margin: 8px auto 40px; border-color: #ffffff; opacity: 1;">
+            <div class="text-center">
+                <h3 class="ports-title">
+                    Important ports and their known vulnerabilities.
+                </h3>
+            </div>
 
             {% for category in categories %}
-            <h3 class="text-center mb-3" style="color: #6f42c1;">
+            <h3 class="text-center mb-3 mt-5" style="color: #6f42c1;">
                 {{ category.name }}
             </h3>
             <div class="category-table-wrapper"
                 style="border: 1px solid #444; border-radius: 6px; overflow: hidden; margin-bottom: 24px;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;">Port</th>
-                            <th>Service</th>
-                            <th>Purpose</th>
-                            <th>Vulnerability</th>
-                            <th style="white-space: nowrap;">Vulnerability Example</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for port in category.ports.all %}
-                        <tr>
-                            <td style="white-space: nowrap;">{{ port.number }}</td>
-                            <td>{{ port.service_name }}</td>
-                            <td>{{ port.purpose }}</td>
-                            <td>{{ port.vulnerability }}</td>
-                            <td>
-                                {% if port.related_attack %}
-                                <a href="{% url 'attacks:detail' port.related_attack.slug %}">View example</a>
-                                {% elif port.related_tool %}
-                                <a href="{% url 'tools:detail' port.related_tool.slug %}">View example</a>
-                                {% else %}
-                                <span style="color: #777;">-</span>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table ports-table">
+                        <thead>
+                            <tr>
+                                <th style="white-space: nowrap;">Port</th>
+                                <th style="white-space: nowrap;">Service</th>
+                                <th style="min-width: 180px;">Purpose</th>
+                                <th style="min-width: 280px;">Vulnerability</th>
+                                <th style="white-space: nowrap;">Vulnerability Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for port in category.ports.all %}
+                            <tr>
+                                <td data-label="Port" style="white-space: nowrap;">{{ port.number }}</td>
+                                <td data-label="Service" style="white-space: nowrap;">{{ port.service_name }}</td>
+                                <td data-label="Purpose" style="min-width: 180px;">{{ port.purpose }}</td>
+                                <td data-label="Vulnerability" style="min-width: 280px;">{{ port.vulnerability }}</td>
+                                <td data-label="Vulnerability Example" style="white-space: nowrap;">
+                                    {% if port.related_attack %}
+                                    <a href="{% url 'attacks:detail' port.related_attack.slug %}">View example</a>
+                                    {% elif port.related_tool %}
+                                    <a href="{% url 'tools:detail' port.related_tool.slug %}">View example</a>
+                                    {% else %}
+                                    <span style="color: #777;">-</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             {% endfor %}
 

@@ -27,13 +27,48 @@
                 .category-table-wrapper table {
                     margin-bottom: 0;
                 }
+
+                @media (max-width: 767px) {
+                    .command-table thead {
+                        display: none;
+                    }
+                    .command-table, .command-table tbody, .command-table tr, .command-table td {
+                        display: block;
+                        width: 100%;
+                    }
+                    .command-table tr {
+                        margin-bottom: 0;
+                        border-bottom: 1px solid #444;
+                    }
+                    .command-table tr:last-child {
+                        border-bottom: none;
+                    }
+                    .command-table td {
+                        padding: 10px 14px;
+                        border: none;
+                    }
+                    .command-table td:first-child {
+                        font-weight: bold;
+                        background-color: rgba(255,255,255,0.05);
+                        word-break: break-word;
+                    }
+                    .command-table td:before {
+                        content: attr(data-label);
+                        display: block;
+                        font-size: 0.75rem;
+                        color: #999;
+                        text-transform: uppercase;
+                        margin-bottom: 4px;
+                        font-weight: normal;
+                    }
+                }
             </style>
 
             {% regroup commands by command_category as category_list %}
             {% for category in category_list %}
             <h4 class="category-heading">{{ category.grouper }}</h4>
             <div class="category-table-wrapper">
-                <table class="table">
+                <table class="table command-table">
                     <thead>
                         <tr>
                             <th>Command</th>
@@ -43,8 +78,8 @@
                     <tbody>
                         {% for command in category.list %}
                         <tr>
-                            <td>{{ command.command }}</td>
-                            <td>{{ command.description }}</td>
+                            <td data-label="Command">{{ command.command }}</td>
+                            <td data-label="Description">{{ command.description }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

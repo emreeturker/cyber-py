@@ -2,13 +2,33 @@
 
 {% block content %}
 
+<style>
+.category-title {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 8px;
+    display: inline-block;
+    font-size: 1.3rem;
+    white-space: nowrap;
+}
+@media (min-width: 768px) {
+    .category-title {
+        font-size: 1.75rem;
+        white-space: normal;
+    }
+}
+</style>
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3 class="text-center" style="color: #ffffff;">Tools organized by category.</h3>
-            <hr style="width: 350px; margin: 8px auto 40px; border-color: #ffffff; opacity: 1;">
+            <div class="text-center">
+                <h3 class="category-title">
+                    Tools organized by category.
+                </h3>
+            </div>
             {% for category in categories %}
-            <h3 class="text-center mb-3" style="color: #0d6efd;">
+            <h3 class="text-center mb-3 mt-5" style="color: #0d6efd;">
                 {% if category.name == "Scanning Tools" %}
                 <i class="bi bi-search me-2"></i>
                 {% elif category.name == "Traffic Analysis Tools" %}
