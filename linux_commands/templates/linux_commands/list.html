@@ -84,7 +84,7 @@
                             {% for command in category.commands.all %}
                             <tr>
                                 <td data-label="Command">{{ command.command }}</td>
-                                <td data-label="Description">{{ command.description }}</td>
+                                <td data-label="Description">{{ command.description|linebreaksbr }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

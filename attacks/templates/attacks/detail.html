@@ -8,7 +8,7 @@
             <h1 class="text-center mb-5" style="color: #dc3545;">{{ attack.name }}</h1>
             <p class="text-center mb-5"
                 style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
-                {{ attack.description }}
+                {{ attack.description|linebreaksbr }}
             </p>
 
             <style>
@@ -79,7 +79,7 @@
                         {% for command in category.list %}
                         <tr>
                             <td data-label="Command">{{ command.command }}</td>
-                            <td data-label="Description">{{ command.description }}</td>
+                            <td data-label="Description">{{ command.description|linebreaksbr }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
