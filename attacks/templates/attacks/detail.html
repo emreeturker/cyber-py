@@ -64,6 +64,19 @@
                 }
             </style>
 
+            {% if attack.slug == "ssh-brute-force" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">First Step</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500; margin-bottom: 24px;">
+                Before running this attack, verified usernames should be gathered instead of guessing blindly — see how to enumerate valid SMTP accounts here.
+            </p>
+            <div class="text-center mb-5">
+                <a href="{% url 'attacks:detail' 'smtp-user-enumeration-port-25' %}" class="btn btn-outline-danger">
+                    View SMTP User Enumeration Details
+                </a>
+            </div>
+            {% endif %}
+
             {% regroup commands by command_category as category_list %}
             {% for category in category_list %}
             <h4 class="category-heading">{{ category.grouper }}</h4>
@@ -192,6 +205,45 @@
             <div class="text-center mt-3">
                 <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">
                     View Metasploit Details
+                </a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "smtp-user-enumeration-port-25" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">Next Step</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
+                The usernames discovered above can be fed into an SSH Brute-Force attack using Metasploit's ssh_login module — see the full command reference and discovered credentials here.
+            </p>
+            <div class="text-center mt-3">
+                <a href="{% url 'attacks:detail' 'ssh-brute-force' %}" class="btn btn-outline-danger">
+                    View SSH Brute-Force Details
+                </a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "fallback-unknown-ports" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">Real-World Example</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
+                See this methodology applied step by step against a real unlisted service — an outdated distcc daemon exploited via CVE-2004-2687.
+            </p>
+            <div class="text-center mt-3">
+                <a href="{% url 'attacks:detail' 'distcc-port-3632' %}" class="btn btn-outline-danger">
+                    View distcc (Port 3632)
+                </a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "distcc-port-3632" %}
+            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">Methodology Reference</h4>
+            <p
+                style="line-height: 1.7; max-width: 650px; margin: 0 auto; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
+                This attack follows the general fallback methodology for unknown/unlisted ports — see the full step-by-step approach here.
+            </p>
+            <div class="text-center mt-3">
+                <a href="{% url 'attacks:detail' 'fallback-unknown-ports' %}" class="btn btn-outline-danger">
+                    View Unknown/Unlisted Ports
                 </a>
             </div>
             {% endif %}
