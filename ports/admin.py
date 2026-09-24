@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin
-from ports.models import PortCategory, Port
+from ports.models import PortCategory, Port, PortContentBlock
+from adminsortable2.admin import SortableAdminBase, SortableStackedInline
 
 
 
@@ -18,8 +19,13 @@ class PortInline(admin.TabularInline):
     form = PortInlineForm
 
 
-class PortCategoryAdmin(admin.ModelAdmin):
-    inlines = [PortInline]
+class PortContentBlockInline(SortableStackedInline):
+    model = PortContentBlock
+    extra = 0
+
+
+class PortCategoryAdmin(SortableAdminBase, admin.ModelAdmin):
+    inlines = [PortInline, PortContentBlockInline]
 
 
 admin.site.register(PortCategory, PortCategoryAdmin)

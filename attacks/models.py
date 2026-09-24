@@ -36,21 +36,21 @@ class Attack(TimeStamped):
 
 class AttackCommandCategory(models.Model):
     attack = models.ForeignKey(Attack, on_delete=models.CASCADE, related_name="command_categories")
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)  
+    name = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
     image = models.ImageField(upload_to="category_images/%Y/%m/", blank=True, null=True)
     related_attack = models.ForeignKey(Attack, on_delete=models.SET_NULL, null=True, blank=True, related_name="linked_from_categories")
     related_tool = models.ForeignKey("tools.Tool", on_delete=models.SET_NULL, null=True, blank=True, related_name="linked_from_attack_categories")
     button_label = models.CharField(max_length=100, blank=True)
-    order = models.PositiveIntegerField(default=0)
+    order = models.PositiveIntegerField(default=0, db_index=True)
 
     class Meta:
-        ordering = ["attack", "order"]
-        unique_together = ("attack", "name")
-        verbose_name_plural = "Attack Command Categories"
+        ordering = ["order"]
+        verbose_name = "Content Block"
+        verbose_name_plural = "Content Blocks"
 
     def __str__(self):
-        return f"{self.attack.name} - {self.name}"
+        return f"{self.attack.name} - {self.name or 'Untitled block'}"
 
 
 class AttackCommand(BaseCommand):

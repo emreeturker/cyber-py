@@ -91,6 +91,7 @@
                     </table>
                 </div>
             </div>
+            {% include "partials/content_blocks.html" with blocks=category.content_blocks.all %}
             {% endfor %}
         </div>
     </div>

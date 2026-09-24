@@ -1,6 +1,6 @@
 from django.contrib import admin
 from attacks.models import AttackCategory, Attack, AttackCommand, AttackCommandCategory
-from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin
+from adminsortable2.admin import SortableAdminBase, SortableInlineAdminMixin, SortableStackedInline
 
 
 
@@ -8,7 +8,7 @@ class AttackCommandInline(SortableInlineAdminMixin, admin.TabularInline):
     model = AttackCommand
 
 
-class AttackCommandCategoryInline(admin.StackedInline):
+class AttackCommandCategoryInline(SortableStackedInline):
     model = AttackCommandCategory
     fk_name = "attack"
     extra = 0

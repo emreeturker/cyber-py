@@ -41,7 +41,9 @@ def seed(apps, schema_editor):
             cat.save(update_fields=["order"])
 
     for slug, where, name, desc, rel_attack, rel_tool, label in BLOCKS:
-        attack = Attack.objects.get(slug=slug)
+        attack = Attack.objects.filter(slug=slug).first()
+        if attack is None:
+            continue
         if where == "before":
             order = 0
         else:
@@ -52,8 +54,8 @@ def seed(apps, schema_editor):
             name=name,
             defaults={
                 "description": desc,
-                "related_attack": Attack.objects.get(slug=rel_attack) if rel_attack else None,
-                "related_tool": Tool.objects.get(slug=rel_tool) if rel_tool else None,
+                "related_attack": Attack.objects.filter(slug=rel_attack).first() if rel_attack else None,
+                "related_tool": Tool.objects.filter(slug=rel_tool).first() if rel_tool else None,
                 "button_label": label,
                 "order": order,
             },
