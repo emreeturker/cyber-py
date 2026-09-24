@@ -9,8 +9,8 @@ def attack_list(request):
 
 def attack_detail(request, attack_slug):
     attack = get_object_or_404(Attack, slug=attack_slug)
-    commands = attack.commands.all()
-    return render(request, "attacks/detail.html", {"attack":attack, "commands":commands})
+    categories = attack.command_categories.select_related("related_attack", "related_tool").prefetch_related("commands")
+    return render(request, "attacks/detail.html", {"attack":attack, "categories":categories})
 
 
 
