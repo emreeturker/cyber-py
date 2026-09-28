@@ -1,88 +1,100 @@
-            {% for block in blocks %}
-            {% if block.name %}
-            {% if block.commands.all %}
-            <h4 class="category-heading">{{ block.name }}</h4>
-            {% else %}
-            <h4 class="category-heading mb-3 text-center" style="color: #ffffff;">{{ block.name }}</h4>
-            {% endif %}
-            {% endif %}
+<style>
+    .command-item {
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 16px;
+        margin-bottom: 16px;
+        background-color: rgba(255, 255, 255, 0.03);
+    }
 
-            {% if block.description %}
-            <p style="line-height: 1.7; max-width: 650px; margin: 0 auto 24px; color: #ffffff; font-size: 1.15rem; font-weight: 500;">
-                {{ block.description|linebreaksbr }}
-            </p>
-            {% endif %}
+    .command-item .command-label,
+    .command-item .description-label {
+        display: block;
+        color: #999;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
 
-            {% if block.commands.all %}
-            <div class="category-table-wrapper">
-                <table class="table command-table">
-                    <thead>
-                        <tr>
-                            <th>Command</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for command in block.commands.all %}
-                        <tr>
-                            <td data-label="Command">{{ command.command }}</td>
-                            <td data-label="Description">{{ command.description|linebreaksbr }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    .command-item .command-code {
+        display: block;
+        background-color: #000000;
+        border-radius: 4px;
+        padding: 10px 14px;
+        margin: 0 0 10px;
+        color: #00ff41;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .command-item .command-description {
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .element-image-wrapper {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .element-image {
+        display: block;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+</style>
+
+{% for element in elements %}
+
+{% if element.text %}
+<h4 class="category-heading text-center">{{ element.text }}</h4>
+{% endif %}
+
+{% if element.block_description %}
+<p style="line-height: 1.7; max-width: 650px; margin: 0 auto 24px; color: #ffffff; font-size: 1.15rem; font-weight: 500; text-align: center;">
+    {{ element.block_description|linebreaksbr }}
+</p>
+{% endif %}
+
+{% if element.command_text %}
+{% if element.command_category %}
+{% ifchanged element.command_category %}
+<h4 class="category-heading text-center">{{ element.command_category.name }}</h4>
+{% endifchanged %}
+{% endif %}
+<div class="command-item">
+    <span class="command-label">Command</span>
+    <pre class="command-code"><code>{{ element.command_text }}</code></pre>
+    {% if element.command_description %}
+    <span class="description-label">Description</span>
+    <p class="command-description">{{ element.command_description|linebreaksbr }}</p>
+    {% endif %}
+</div>
+{% endif %}
+
+{% if element.image %}
+<div class="element-image-wrapper">
+    <img src="{{ element.image.url }}" class="img-fluid rounded element-image" data-bs-toggle="modal"
+        data-bs-target="#elementImageModal{{ element.id }}">
+</div>
+
+<div class="modal fade" id="elementImageModal{{ element.id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            {% for command in block.commands.all %}
-            {% if command.image %}
-            <img src="{{ command.image.url }}" class="img-fluid rounded" style="margin-bottom: 24px; cursor: pointer;"
-                data-bs-toggle="modal" data-bs-target="#imageModal{{ command.id }}">
-
-            <div class="modal fade" id="imageModal{{ command.id }}" tabindex="-1">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content bg-dark">
-                        <div class="modal-header border-0">
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body text-center pt-0">
-                            <img src="{{ command.image.url }}" class="img-fluid rounded">
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-body text-center pt-0">
+                <img src="{{ element.image.url }}" class="img-fluid rounded">
             </div>
-            {% endif %}
-            {% endfor %}
-            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
 
-            {% if block.image %}
-            <img src="{{ block.image.url }}" class="img-fluid rounded" style="margin-bottom: 24px; cursor: pointer;"
-                data-bs-toggle="modal" data-bs-target="#categoryImageModal{{ block.id }}">
-
-            <div class="modal fade" id="categoryImageModal{{ block.id }}" tabindex="-1">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content bg-dark">
-                        <div class="modal-header border-0">
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body text-center pt-0">
-                            <img src="{{ block.image.url }}" class="img-fluid rounded">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if block.related_attack %}
-            <div class="text-center mb-4">
-                <a href="{{ block.related_attack.get_absolute_url }}" class="btn btn-outline-danger">
-                    {{ block.button_label|default:block.related_attack.name }}
-                </a>
-            </div>
-            {% endif %}
-            {% if block.related_tool %}
-            <div class="text-center mb-4">
-                <a href="{{ block.related_tool.get_absolute_url }}" class="btn btn-outline-primary">
-                    {{ block.button_label|default:block.related_tool.name }}
-                </a>
-            </div>
-            {% endif %}
-            {% endfor %}
+{% endfor %}

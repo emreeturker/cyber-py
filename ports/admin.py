@@ -4,7 +4,6 @@ from ports.models import PortCategory, Port, PortContentBlock
 from adminsortable2.admin import SortableAdminBase, SortableStackedInline
 
 
-
 class PortInlineForm(forms.ModelForm):
     class Meta:
         model = Port

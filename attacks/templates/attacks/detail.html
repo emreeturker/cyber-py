@@ -16,55 +16,73 @@
                     color: #dc3545;
                     margin-bottom: 10px;
                 }
-
-                .category-table-wrapper {
-                    border: 1px solid #444;
-                    border-radius: 6px;
-                    overflow: hidden;
-                    margin-bottom: 24px;
-                }
-
-                .category-table-wrapper table {
-                    margin-bottom: 0;
-                }
-
-                @media (max-width: 767px) {
-                    .command-table thead {
-                        display: none;
-                    }
-                    .command-table, .command-table tbody, .command-table tr, .command-table td {
-                        display: block;
-                        width: 100%;
-                    }
-                    .command-table tr {
-                        margin-bottom: 0;
-                        border-bottom: 1px solid #444;
-                    }
-                    .command-table tr:last-child {
-                        border-bottom: none;
-                    }
-                    .command-table td {
-                        padding: 10px 14px;
-                        border: none;
-                    }
-                    .command-table td:first-child {
-                        font-weight: bold;
-                        background-color: rgba(255,255,255,0.05);
-                        word-break: break-word;
-                    }
-                    .command-table td:before {
-                        content: attr(data-label);
-                        display: block;
-                        font-size: 0.75rem;
-                        color: #999;
-                        text-transform: uppercase;
-                        margin-bottom: 4px;
-                        font-weight: normal;
-                    }
-                }
             </style>
 
-            {% include "partials/content_blocks.html" with blocks=categories %}
+            {% include "partials/content_blocks.html" with elements=elements %}
+
+            {% if attack.slug == "mitm-manual" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'attacks:detail' 'mitm-automatic' %}" class="btn btn-outline-danger">View MITM Automatic</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "mitm-automatic" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'bettercap' %}" class="btn btn-outline-primary">View Bettercap Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "ftp-exploitation" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">View Metasploit Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "samba-exploitation" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">View Metasploit Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "postgresql-exploitation" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">View Metasploit Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "ssh-brute-force" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'attacks:detail' 'smtp-user-enumeration-port-25' %}" class="btn btn-outline-danger">View SMTP User Enumeration Details</a>
+            </div>
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">View Metasploit Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "vnc-brute-force" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'tools:detail' 'metasploit' %}" class="btn btn-outline-primary">View Metasploit Details</a>
+            </div>
+            {% endif %}
+            
+            {% if attack.slug == "smtp-user-enumeration-port-25" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'attacks:detail' 'ssh-brute-force' %}" class="btn btn-outline-danger">View SSH Brute-Force Details</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "fallback-unknown-ports" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'attacks:detail' 'distcc-port-3632' %}" class="btn btn-outline-danger">View distcc (Port 3632)</a>
+            </div>
+            {% endif %}
+
+            {% if attack.slug == "distcc-port-3632" %}
+            <div class="text-center mb-4">
+                <a href="{% url 'attacks:detail' 'fallback-unknown-ports' %}" class="btn btn-outline-danger">View Unknown/Unlisted Ports</a>
+            </div>
+            {% endif %}
+            
         </div>
     </div>
 </div>
