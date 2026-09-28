@@ -97,4 +97,24 @@
 </div>
 {% endif %}
 
+{% for extra_image in element.images.all %}
+<div class="element-image-wrapper">
+    <img src="{{ extra_image.image.url }}" class="img-fluid rounded element-image" data-bs-toggle="modal"
+        data-bs-target="#elementImageModal-extra-{{ extra_image.id }}">
+</div>
+
+<div class="modal fade" id="elementImageModal-extra-{{ extra_image.id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center pt-0">
+                <img src="{{ extra_image.image.url }}" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endfor %}

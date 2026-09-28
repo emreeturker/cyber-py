@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import TimeStamped, BaseCommandElement
+from common.models import TimeStamped, BaseCommandElement, BaseCommandElementImage
 from django.urls import reverse
 
 
@@ -8,10 +8,10 @@ class AttackCategory(models.Model):
 
     class Meta:
         verbose_name_plural = "Attack Categories"
-        
+
     def __str__(self):
         return self.name
-    
+
 
 class Attack(TimeStamped):
     name = models.CharField(max_length=100)
@@ -21,18 +21,22 @@ class Attack(TimeStamped):
 
     def __str__(self):
         return self.name
-    
+
     @property
     def type_label(self):
         return "attack"
-    
+
     @property
     def badge_color(self):
         return "danger"
 
     def get_absolute_url(self):
         return reverse('attacks:detail', args=[self.slug])
-    
+
 
 class AttackCommandElement(BaseCommandElement):
     attack = models.ForeignKey(Attack, on_delete=models.CASCADE, related_name="elements")
+
+
+class AttackCommandElementImage(BaseCommandElementImage):
+    element = models.ForeignKey(AttackCommandElement, on_delete=models.CASCADE, related_name="images")

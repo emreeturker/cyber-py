@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import BaseCommandElement
+from common.models import BaseCommandElement, BaseCommandElementImage
 
 
 class LinuxCommandCategory(models.Model):
@@ -14,3 +14,7 @@ class LinuxCommandCategory(models.Model):
 
 class LinuxCommandElement(BaseCommandElement):
     category = models.ForeignKey(LinuxCommandCategory, on_delete=models.CASCADE, related_name="elements")
+
+
+class LinuxCommandElementImage(BaseCommandElementImage):
+    element = models.ForeignKey(LinuxCommandElement, on_delete=models.CASCADE, related_name="images")

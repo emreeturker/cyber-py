@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import TimeStamped, BaseCommandElement
+from common.models import TimeStamped, BaseCommandElement, BaseCommandElementImage
 from django.urls import reverse
 
 
@@ -36,3 +36,7 @@ class Tool(TimeStamped):
 
 class ToolCommandElement(BaseCommandElement):
     tool = models.ForeignKey(Tool, on_delete=models.CASCADE, related_name="elements")
+
+
+class ToolCommandElementImage(BaseCommandElementImage):
+    element = models.ForeignKey(ToolCommandElement, on_delete=models.CASCADE, related_name="images")

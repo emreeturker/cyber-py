@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'linux_commands.apps.LinuxCommandsConfig',
     'ports.apps.PortsConfig',
+    'nested_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -66,3 +66,15 @@ class BaseCommandElement(models.Model):
         label = self.text or self.command_text or self.block_description
         type_label = self.get_element_type_display() or "Empty"
         return f"{type_label}: {label[:40]}" if label else type_label
+
+
+class BaseCommandElementImage(models.Model):
+    image = models.ImageField(upload_to="command_element_images/%Y/%m/")
+    order = models.PositiveIntegerField(default=0, db_index=True)
+
+    class Meta:
+        abstract = True
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"Image #{self.order}"

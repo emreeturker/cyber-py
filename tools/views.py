@@ -9,5 +9,5 @@ def tool_list(request):
 
 def tool_detail(request, tool_slug):
     tool = get_object_or_404(Tool, slug=tool_slug)
-    elements = tool.elements.select_related("command_category")
+    elements = tool.elements.select_related("command_category").prefetch_related("images")
     return render(request, "tools/detail.html", {"tool": tool, "elements": elements})

@@ -1,16 +1,26 @@
+import nested_admin
 from django.contrib import admin
-from attacks.models import AttackCategory, Attack, AttackCommandElement
-from adminsortable2.admin import SortableAdminBase, SortableStackedInline
+from attacks.models import AttackCategory, Attack, AttackCommandElement, AttackCommandElementImage
 
 
-class AttackCommandElementInline(SortableStackedInline):
+class AttackCommandElementImageInline(nested_admin.SortableHiddenMixin, nested_admin.NestedTabularInline):
+    model = AttackCommandElementImage
+    fk_name = "element"
+    extra = 0
+    fields = ("order", "image")
+    sortable_field_name = "order"
+
+
+class AttackCommandElementInline(nested_admin.SortableHiddenMixin, nested_admin.NestedStackedInline):
     model = AttackCommandElement
     fk_name = "attack"
     extra = 0
-    fields = ("order", "text", "block_description", "command_text", "command_description", "command_category", "image")
+    fields = ("order", "text", "block_description", "command_text", "command_description", "command_category")
+    sortable_field_name = "order"
+    inlines = [AttackCommandElementImageInline]
 
 
-class AttackAdmin(SortableAdminBase, admin.ModelAdmin):
+class AttackAdmin(nested_admin.NestedModelAdmin):
     inlines = [AttackCommandElementInline]
 
 
